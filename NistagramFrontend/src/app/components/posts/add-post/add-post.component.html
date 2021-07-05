@@ -1,0 +1,10 @@
+<app-image-upload (imageId)="imageUploaded($event)"></app-image-upload>
+<hr class="mt-5">
+<div class="form-group col-sm-4 offset-sm-4 mt-3">
+    <label for="exampleFormControlTextarea1">Description</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="post.description"></textarea>
+    <div class="text-center">
+        <button class="btn btn-secondary mt-2" (click)="onSubmit()">Submit</button>
+
+    </div>
+</div>

@@ -1,0 +1,21 @@
+
+<h4>Comments</h4>
+
+<div class="overflow-auto h-75">
+    <div class="card" *ngFor="let comment of comments">
+        <div class="card-block">
+            <h4 class="card-title">{{comment.user_profile_username}}</h4>
+            <!-- <div class="meta">
+                <a href="#">Friends</a>
+            </div> -->
+            <div class="card-text">
+                {{comment.text}}
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class="float-right">{{comment.timestamp | date}}</span>
+            <!-- <span><i class=""></i>75 Friends</span> -->
+        </div>
+    </div>
+
+</div>
