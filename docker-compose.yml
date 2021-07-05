@@ -1,0 +1,18 @@
+version: "3.8"
+
+networks:
+    apigateway_system_network:
+      external: true
+      
+service:
+    frontend:
+        build:
+          context: ./NistagramFrontend
+          dockerfile: ./Dockerfile
+        ports:
+          - "4200:4200"
+          - "9876:9876"
+        hostname:
+          nistagram_frontend
+        networks:
+          - apigateway_system_network
