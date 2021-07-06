@@ -2,16 +2,24 @@
     <div class="row" >
         <div class="col-sm-8 bg-dark flex-wrap align-items-center">
             <div class="d-flex flex-wrap align-items-center image-container">
-                <img  [src]="post.image" class="rounded my-auto" width="100%">
+                <img  [src]="images_url + '/image/' + post.image" class="rounded my-auto" width="100%">
 
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 mt-2">
             <div class="row">
                 <div class="col">
                     <div class="card">
                         <div class="card-block">
-                            <h4 class="card-title">{{post.profile_username}}</h4>
+                            <h4 class="card-title">{{post.profile_username}}
+                                
+                                <span class="float-right">
+                                    {{post.likes}}
+                                    <fa-icon  [ngClass]="{'highlighted': post.liked_by_user}" [icon]="faHeart"></fa-icon>
+                                    {{post.dislikes}}
+                                    <fa-icon  [ngClass]="{'highlighted': post.disliked_by_user}" [icon]="faTrash"></fa-icon>
+                                </span>
+                            </h4>
                             <!-- <div class="meta">
                                 <a href="#">Friends</a>
                             </div> -->
@@ -27,7 +35,7 @@
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col">
+                <div class="col comments-container">
                     <app-comments [postId]="post.id"></app-comments>
                 </div>
             </div>

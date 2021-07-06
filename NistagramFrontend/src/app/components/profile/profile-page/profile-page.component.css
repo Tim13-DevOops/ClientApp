@@ -10,15 +10,6 @@ h5 {
     margin: 0;
 }
 
-fa-icon {
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-}
-
-.highlighted {
-    color: #782378;
-}
-
 .card {
     font-size: 1em;
     overflow: hidden;
@@ -120,8 +111,4 @@ fa-icon {
 
 .meta a:hover {
     color: rgba(0, 0, 0, .87);
-}
-
-.cursorPointer {
-    cursor: pointer;
 }

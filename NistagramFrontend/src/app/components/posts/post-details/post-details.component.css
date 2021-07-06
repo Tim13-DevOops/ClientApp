@@ -10,9 +10,11 @@
     height: 85vh;
 }
 
-::ng-deep .modal-container {
-
+::ng-deep .comments-container {
+    flex-wrap: wrap;
+    height: 55vh;
 }
+
 
 html {
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;

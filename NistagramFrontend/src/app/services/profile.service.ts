@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { UserProfile } from '../model/user-profile.model';
 
 @Injectable({
@@ -11,6 +14,7 @@ export class ProfileService {
   private _currentProfile: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
   public currentProfileObservable = this._currentProfile.asObservable();
+
 
   profiles = [
     new UserProfile({
@@ -41,33 +45,42 @@ export class ProfileService {
     }),
   ]
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getByUsername(profileUsername: string) {
-    for (let profile of this.profiles) {
-      if (profile.username == profileUsername) {
-        return profile
-      }
-    }
-    return new UserProfile
+  getByUsername(profileUsername: string): Observable<UserProfile> {
+    return this.http.get(`${environment.profile_url}/user_profile/${profileUsername}`).pipe(map((data: any) => {
+      return new UserProfile(data);
+    }))
   }
 
-  getById(profileId: number) {
-    for (let profile of this.profiles) {
-      if (profile.id == profileId) {
-        return profile
-      }
-    }
-    return new UserProfile
-
+  updateUserProfile(userProfile: UserProfile): Observable<UserProfile> {
+    return this.http.put(`${environment.profile_url}/user_profile`, userProfile).pipe(map((data: any) => {
+      return new UserProfile(data);
+    }))
   }
+
+  // getById(profileId: number) {
+  //   for (let profile of this.profiles) {
+  //     if (profile.id == profileId) {
+  //       return profile
+  //     }
+  //   }
+  //   return new UserProfile
+  // }
 
   getCurrentProfile() {
     return this._currentProfile.value
   }
 
   changeCurrentProfile(username: string) {
-    let newProfile = this.getByUsername(username)
-    this._currentProfile.next(newProfile)
+    // console.log('usernmae', username)
+    if(!username) {
+      this._currentProfile.next(undefined);
+    } else {
+      this.getByUsername(username).subscribe((newProfile: UserProfile) => {
+        this._currentProfile.next(newProfile);
+      })
+
+    }
   }
 }
