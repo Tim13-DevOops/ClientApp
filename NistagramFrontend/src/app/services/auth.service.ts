@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import jwt_decode from 'jwt-decode';
 import { ProfileService } from './profile.service';
+import { CursorError } from '@angular/compiler/src/ml_parser/lexer';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,21 @@ export class AuthService {
 
   public userObservable = this._user.asObservable();
 
-  constructor(private http: HttpClient, private profileService: ProfileService) { }
+  constructor(private http: HttpClient, private profileService: ProfileService, private router: Router) { 
+    let currentUser: any = localStorage.getItem("user")
+    if (!currentUser) {
+      this.profileService.changeCurrentProfile("");
+      this._user.next(undefined)
+    } else {
+      currentUser = JSON.parse(currentUser)
+      this.profileService.changeCurrentProfile(currentUser.sub.username)
+      this._user.next(currentUser)
+    }
+
+  }
+
+  ngOnInit() {
+  }
 
   login(credentials: any) {
     return this.http.post(`${environment.auth_url}/login`, credentials).pipe(map((token: any) => {
@@ -35,6 +51,8 @@ export class AuthService {
   logout() {
     this._user.next(null);
     localStorage.removeItem("user");
+    this.profileService.changeCurrentProfile("");
+    this.router.navigateByUrl("/login");
   }
 
   register(credentials: any) {

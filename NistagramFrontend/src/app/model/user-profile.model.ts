@@ -9,7 +9,7 @@ export class UserProfile {
     birth_date: string;
     biography: string;
     website: string;
-    date_created: string;
+    timestamp: string;
     public: boolean;
     taggable: boolean;
 
@@ -22,7 +22,7 @@ export class UserProfile {
         this.birth_date = obj && obj.birth_date || "";
         this.biography = obj && obj.biography || "";
         this.website = obj && obj.website || "";
-        this.date_created = obj && obj.date_created || "";
+        this.timestamp = obj && obj.timestamp || "";
         this.public = obj && obj.public || true;
         this.taggable = obj && obj.taggable || true;
     }

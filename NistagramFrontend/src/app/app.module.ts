@@ -19,6 +19,10 @@ import { PostDetailsComponent } from './components/posts/post-details/post-detai
 import { ImageUploadComponent } from './components/core/image-upload/image-upload.component';
 import { CommentsComponent } from './components/posts/post-details/comments/comments.component';
 import { RegisterComponent } from './components/core/register/register.component';
+import { ProfilePageComponent } from './components/profile/profile-page/profile-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import { RegisterComponent } from './components/core/register/register.component
     PostDetailsComponent,
     ImageUploadComponent,
     CommentsComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +47,11 @@ import { RegisterComponent } from './components/core/register/register.component
     NgbModule,
     HttpClientModule,
     FormsModule,
+    FontAwesomeModule,
+    InfiniteScrollModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

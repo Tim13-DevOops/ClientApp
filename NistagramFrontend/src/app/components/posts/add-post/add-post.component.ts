@@ -25,8 +25,9 @@ export class AddPostComponent implements OnInit {
   }
 
   onSubmit() {
-    this.postService.addPost(this.post);
-    this.router.navigateByUrl("/home")
+    this.postService.addPost(this.post).subscribe((newPost: Post) => {
+      this.router.navigateByUrl("/home")
+    })
   }
 
 

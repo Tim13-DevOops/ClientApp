@@ -1,9 +1,16 @@
 
 <div class="col-sm-6 offset-sm-3  col-md-4 offset-md-4 mt-4">
-    <div class="card"  (click)="openDetails()">
-        <img class="card-img-top" [src]="post.image">
+    <div class="card">
+        <img class="card-img-top cursorPointer" [src]="image_url + '/image/' + post.image"   (click)="openDetails()">
         <div class="card-block">
-            <h4 class="card-title">{{post.profile_username}}</h4>
+                <h4 class="card-title cursorPointer" [routerLink]="['/profile', post.profile_username]">{{post.profile_username}}
+                    <span class="float-right">
+                        {{post.likes}}
+                        <fa-icon  [ngClass]="{'highlighted': post.liked_by_user}" [icon]="faHeart"></fa-icon>
+                        {{post.dislikes}}
+                        <fa-icon  [ngClass]="{'highlighted': post.disliked_by_user}" [icon]="faTrash"></fa-icon>
+                    </span>
+                </h4>
             <!-- <div class="meta">
                 <a href="#">Friends</a>
             </div> -->

@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Post } from 'src/app/model/post.model';
+import { environment } from 'src/environments/environment';
 import { PostDetailsComponent } from '../post-details/post-details.component';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-post',
@@ -12,6 +15,11 @@ export class PostComponent implements OnInit {
 
   @Input()
   post: Post = new Post();
+
+  image_url = environment.images_url;
+
+  faTrash = faTrash;
+  faHeart = faHeart;
 
   constructor(private modalService: NgbModal) { }
 

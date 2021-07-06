@@ -1,3 +1,11 @@
+.comments-container {
+    height: 100%;
+}
+
+#newComment {
+    width: 100%;
+}
+
 html {
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -36,7 +44,7 @@ h5 {
 }
 
 .card-title {
-    font-size: 1.28571429em;
+    font-size: 1em;
     font-weight: 200;
     line-height: 1.2857em;
 }
