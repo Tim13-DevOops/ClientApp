@@ -25,6 +25,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AgentRequestsComponent } from './components/admin/agent-requests/agent-requests.component';
 import { CampaignComponent } from './components/agent/campaign/campaign.component';
+import { LikedComponent } from './components/posts/liked/liked.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CampaignComponent } from './components/agent/campaign/campaign.componen
     ProfilePageComponent,
     AgentRequestsComponent,
     CampaignComponent,
+    LikedComponent,
   ],
   imports: [
     BrowserModule,

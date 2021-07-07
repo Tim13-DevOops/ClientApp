@@ -43,4 +43,18 @@ export class PostService {
       return new Post(data);
     }))
   }
+
+  updateReaction(postId: number, reaction: boolean): Observable<Post> {
+    return this.http.put(`${environment.post_url}/reaction`, { post_id: postId, like: reaction }).pipe(map((data: any) => {
+      return new Post(data);
+    }))
+
+  }
+
+  getLiked() {
+    return this.http.get(`${environment.post_url}/post/like`).pipe(map((data: any) => {
+      return data.map((x: any) => new Post(x));
+    }))
+
+  }
 }
