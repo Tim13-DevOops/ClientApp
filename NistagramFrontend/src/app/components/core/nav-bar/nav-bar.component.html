@@ -23,10 +23,10 @@
             <li class="nav-item">
             <a  *ngIf="user?.sub.user_role == 'agent'" class="nav-link" [routerLink]="['/campaign']">Advertise</a>
             </li>
-            <li *ngIf="!user"  class="nav-item ms-auto float-end" [routerLink]="['/login']">
+            <li *ngIf="!user"  class="nav-item ml-auto float-end" [routerLink]="['/login']">
             <a class="nav-link">Login</a>
             </li>
-            <li *ngIf="user" class="nav-item ms-auto float-end">
+            <li *ngIf="user" class="nav-item ml-auto float-end">
                 <a class="nav-link" [routerLink]="" (click)="logout()">Logout</a>
             </li>
         </ul>

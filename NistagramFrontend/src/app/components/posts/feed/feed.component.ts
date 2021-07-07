@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Advertisement } from 'src/app/model/advertisement.model';
 import { Post } from 'src/app/model/post.model';
 import { CampaignService } from 'src/app/services/campaign.service';
@@ -18,6 +19,10 @@ export class FeedComponent implements OnInit {
     page: 1,
     pageSize: 5
   }
+
+  faSearch = faSearch
+  searchString = "";
+  searched = false;
 
   loading = false;
   done = false;
@@ -62,6 +67,28 @@ export class FeedComponent implements OnInit {
       this.done = true;
       // this.toastService.show(err.message)
     })
+  }
+
+  onSearch() {
+    console.log(this.searchString)
+    if (this.searchString == "") {
+      if (!this.searched) {
+        return
+      }
+      this.searched = false;
+      this.params.page = 1;
+      this.postService.getPosts(this.params).subscribe((posts: Post[]) => {
+        this.posts = posts;
+        this.getAdvertisements()
+      }, (err: any) => {
+        this.toastService.show(err.message)
+      })
+    } else {
+      this.searched = true;
+      this.postService.getByTag(this.searchString).subscribe((posts: Post[]) => {
+        this.posts = posts;
+      })
+    }
   }
 
 }
