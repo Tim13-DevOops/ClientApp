@@ -51,10 +51,16 @@ export class PostService {
 
   }
 
-  getLiked() {
+  getLiked(): Observable<Post[]> {
     return this.http.get(`${environment.post_url}/post/like`).pipe(map((data: any) => {
       return data.map((x: any) => new Post(x));
     }))
 
+  }
+
+  getByTag(tag: string): Observable<Post[]> {
+    return this.http.get(`${environment.post_url}/post/tag/${tag}`).pipe(map((data: any) => {
+      return data.map((x: any) => new Post(x));
+    }))
   }
 }

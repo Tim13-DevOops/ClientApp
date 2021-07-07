@@ -12,6 +12,7 @@ export class Post {
     dislikes: number;
     sponsored?: boolean = false;
     product_id?: number;
+    tags: string[];
 
     constructor(obj?:any) {
         this.id = obj && obj.id || 0;
@@ -23,6 +24,7 @@ export class Post {
         this.disliked_by_user = obj && obj.disliked_by_user || false;
         this.likes = obj && obj.likes || 0;
         this.dislikes = obj && obj.dislikes || 0;
+        this.tags = obj && obj.tags || [];
     }
 
 }

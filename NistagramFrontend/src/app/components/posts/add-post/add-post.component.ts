@@ -25,6 +25,9 @@ export class AddPostComponent implements OnInit {
   }
 
   onSubmit() {
+    const regexp = /#\w+/g;
+    const matches = this.post.description.match(regexp);
+    this.post.tags = matches && matches.map((x:any) => x.substr(1)) || [];
     this.postService.addPost(this.post).subscribe((newPost: Post) => {
       this.router.navigateByUrl("/home")
     })

@@ -4,7 +4,8 @@
         <img *ngIf="post.product_id" class="card-img-top cursorPointer" [src]="image_url + '/image/' + post.image"   (click)="goToProductPage()">
         <img *ngIf="!post.product_id" class="card-img-top cursorPointer" [src]="image_url + '/image/' + post.image"   (click)="openDetails()">
         <div class="card-block">
-                <h4 class="card-title cursorPointer" [routerLink]="['/profile', post.profile_username]">{{post.profile_username}}
+                <h4 class="card-title cursorPointer">
+                    <a [routerLink]="['/profile', post.profile_username]">{{post.profile_username}}</a>
                     <span class="float-right">
                         {{post.likes}}
                         <fa-icon  [ngClass]="{'highlighted': post.liked_by_user}" [icon]="faHeart" (click)="updateReaction(true)"></fa-icon>
