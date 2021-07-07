@@ -45,6 +45,7 @@
               </div>
               <div class="text-center mt-3 mb-3">
                 <button *ngIf="isCurrentUser" type="submit" class="btn btn-secondary">Update</button>
+                <button *ngIf="isCurrentUser && user.sub.user_role == 'user'" (click)="sendAgentRequest()" class="btn btn-secondary my-3">Send agent request</button>
 
               </div>
         </form>

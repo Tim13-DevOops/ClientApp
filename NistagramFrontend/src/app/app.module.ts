@@ -23,6 +23,8 @@ import { ProfilePageComponent } from './components/profile/profile-page/profile-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AgentRequestsComponent } from './components/admin/agent-requests/agent-requests.component';
+import { CampaignComponent } from './components/agent/campaign/campaign.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     CommentsComponent,
     RegisterComponent,
     ProfilePageComponent,
+    AgentRequestsComponent,
+    CampaignComponent,
   ],
   imports: [
     BrowserModule,

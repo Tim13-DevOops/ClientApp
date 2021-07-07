@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfile } from 'src/app/model/user-profile.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -17,11 +18,14 @@ export class ProfileComponent implements OnInit {
   birth_date: NgbDateStruct = this.initBirthDate();
   isCurrentUser: boolean = false;
 
+  user: any = { sub: {} }
 
 
-  constructor(private route: ActivatedRoute, private profileService: ProfileService, private toastService: ToastService) { }
+
+  constructor(private route: ActivatedRoute, private profileService: ProfileService, private toastService: ToastService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.user = this.authService.getUser()
     this.route.params.subscribe((params: any) => {
       this.profileUsername = params["profileUsername"];
       this.profileService.getByUsername(this.profileUsername).subscribe((userProfile: UserProfile) => {
@@ -51,6 +55,14 @@ export class ProfileComponent implements OnInit {
     this.profileService.updateUserProfile(this.userProfile).subscribe((updatedProfile: UserProfile) => {
       this.userProfile = updatedProfile;
       this.toastService.show("Profile updated");
+    }, (err: any) => {
+      this.toastService.show(err.message)
+    })
+  }
+
+  sendAgentRequest() {
+    this.authService.sendAgentRequest()?.subscribe((data: any) => {
+      this.router.navigateByUrl('/profile/' + this.userProfile.username)
     }, (err: any) => {
       this.toastService.show(err.message)
     })

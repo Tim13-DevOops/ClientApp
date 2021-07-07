@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import jwt_decode from 'jwt-decode';
@@ -58,4 +58,21 @@ export class AuthService {
   register(credentials: any) {
     return this.http.post(`${environment.auth_url}/user`, credentials)
   }
+
+  sendAgentRequest() {
+    let user = this._user.value
+    if (!user)
+      return
+    user.sub.agent_request = true
+    return this.http.put(`${environment.auth_url}/user`, user.sub)
+  }
+  
+  getAgentRequests(): Observable<any> {
+    return this.http.get(`${environment.auth_url}/agent_request`)
+  }
+
+  resolveAgentRequest(user_id: number, approve: boolean): Observable<any> {
+    return this.http.post(`${environment.auth_url}/user/${user_id}/agent_request`, { approve })
+  } 
+
 }
