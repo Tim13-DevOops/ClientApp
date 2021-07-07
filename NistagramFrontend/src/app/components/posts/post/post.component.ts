@@ -6,6 +6,7 @@ import { PostDetailsComponent } from '../post-details/post-details.component';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { DOCUMENT } from '@angular/common';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -22,7 +23,7 @@ export class PostComponent implements OnInit {
   faTrash = faTrash;
   faHeart = faHeart;
 
-  constructor(private modalService: NgbModal, @Inject(DOCUMENT) private document: Document) { }
+  constructor(private postService: PostService, private modalService: NgbModal, @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
   }
@@ -34,6 +35,41 @@ export class PostComponent implements OnInit {
 
   goToProductPage(): void {
       this.document.location.href = `${environment.agent_frontend_url}/product/${this.post.product_id}`;
+  }
+
+  updateReaction(reaction: boolean) {
+    if (reaction && this.post.liked_by_user) {
+      return
+    }
+    if (reaction && !this.post.liked_by_user) {
+      this.post.likes += 1
+    }
+    if (!reaction && this.post.disliked_by_user) {
+      return
+    }
+    
+    if (!reaction && !this.post.disliked_by_user) {
+      this.post.dislikes += 1
+    }
+
+    if (reaction && this.post.disliked_by_user) {
+      this.post.dislikes -= 1;
+    }
+
+    if (!reaction && this.post.liked_by_user) {
+      this.post.likes -= 1;
+    }
+
+    if (reaction) {
+      this.post.liked_by_user = true;
+      this.post.disliked_by_user = false;
+    } else {
+      this.post.liked_by_user = false;
+      this.post.disliked_by_user = true;
+    }
+    this.postService.updateReaction(this.post.id, reaction).subscribe((post: Post) => {
+      
+    })
   }
 
 }
