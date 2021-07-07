@@ -10,6 +10,8 @@ export class Post {
     disliked_by_user: boolean;
     likes: number;
     dislikes: number;
+    sponsored?: boolean = false;
+    product_id?: number;
 
     constructor(obj?:any) {
         this.id = obj && obj.id || 0;

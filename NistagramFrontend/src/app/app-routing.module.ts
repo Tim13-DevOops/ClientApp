@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AgentRequestsComponent } from './components/admin/agent-requests/agent-requests.component';
+import { CampaignComponent } from './components/agent/campaign/campaign.component';
 import { LoginComponent } from './components/core/login/login.component';
 import { RegisterComponent } from './components/core/register/register.component';
 import { AddPostComponent } from './components/posts/add-post/add-post.component';
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: "profileDetails/:profileUsername", component: ProfileComponent },
   { path: "posts/:postUsername", component: PostDetailsComponent},
   { path: "post", component: AddPostComponent},
+  { path: "agentRequests", component: AgentRequestsComponent },
+  { path: "campaign", component: CampaignComponent },
   { path: "", redirectTo: "/home", pathMatch: "full" },
 ];
 

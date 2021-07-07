@@ -4,12 +4,14 @@
 
 export const environment = {
   production: false,
-  api_url: "http://localhost:8000/agent_backend",
+  agent_api_url: "http://localhost:8000/agent_backend",
+  agent_frontend_url: "http://localhost:4200",
   images_url: "http://localhost:8000/image_service",
   auth_url: "http://localhost:8000/authentication",
   profile_url: "http://localhost:8000/user_profile",
   post_url: "http://localhost:8000/post",
   comment_url: "http://localhost:8000/post_comment",
+  campaign_url: "http://localhost:8000/campaign",
 };
 
 /*
