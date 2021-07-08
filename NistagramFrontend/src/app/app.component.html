@@ -1,0 +1,20 @@
+<div class="container-fluid bg-light fill main-container">
+  <div class="row">
+    <img src="assets/images/cover.png" width="100%">
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-nav-bar></app-nav-bar>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+    </div>
+  </div>
+</div>

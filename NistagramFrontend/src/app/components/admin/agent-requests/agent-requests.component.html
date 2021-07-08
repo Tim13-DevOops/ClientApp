@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-sm-4 offset-sm-4">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users; index as i">
+                <th scope="row">{{i}}</th>
+                <td>{{user.username}}</td>
+                <td>
+                    <fa-icon class="colorGreen mb-1 ms-2 me-2" [icon]="faCheck" (click)="handleRequest(user.id, true)"></fa-icon>
+                </td>
+                <td>
+                    <fa-icon  class="colorRed mb-1 ms-2" [icon]="faTimes" (click)="handleRequest(user.id, false)"></fa-icon>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

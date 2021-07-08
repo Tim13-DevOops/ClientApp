@@ -1,0 +1,29 @@
+
+<h4>Comments</h4>
+<div class="row">
+        <div class="form-group mb-2 col-8">
+          <input type="text" class="form-control" id="newComment" name="newCommentInput" placeholder="Write something..." [(ngModel)]="newCommentText">
+        </div>
+        <div class="col-4">
+            <button type="submit" class="btn btn-secondary mb-2 ms-3" (click)="postComment()">Comment</button>
+
+        </div>
+
+</div>
+
+<div class="overflow-auto vh-50 comments-container">
+    <div class="card" *ngFor="let comment of comments">
+        <div class="card-block">
+            <h4 class="card-title">{{comment.profile_username}}
+                <small class="float-right">{{comment.timestamp | date}}</small>
+            </h4>
+            <!-- <div class="meta">
+                <a href="#">Friends</a>
+            </div> -->
+            <div class="card-text">
+                {{comment.text}}
+            </div>
+        </div>
+    </div>
+
+</div>

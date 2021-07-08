@@ -1,0 +1,29 @@
+<div class="row">
+    <form (submit)="onSearch()" class="w-100">
+        <div class="input-group col-sm-4 offset-sm-4  mb-3 mt-3">
+            <div class="form-outline w-75 ml-5">
+                <input type="search" id="searchInput" class="form-control" name="searchControl" placeholder="Search" [(ngModel)]="searchString" />
+            </div>
+            <button type="submit" class="btn btn-secondary">
+                <fa-icon  [icon]="faSearch"></fa-icon>
+            </button>
+        </div>
+    </form>
+</div>
+
+
+<div *ngIf="!searched" infinite-scroll [infiniteScrollDistance]="10" [infiniteScrollThrottle]="50"  (scrolled)="onScroll()">
+    <div class="row feed_container" >
+        <div class="col">
+            <app-post [post]="post" *ngFor="let post of posts"></app-post>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="searched">
+    <div class="row feed_container" >
+        <div class="col">
+            <app-post [post]="post" *ngFor="let post of posts"></app-post>
+        </div>
+    </div>
+</div>

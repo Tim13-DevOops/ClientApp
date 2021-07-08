@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-sm-4 offset-sm-4">
+        <form (submit)="updateClicked()">
+            <div class="form-group">
+              <label for="usernameFormControl">Username</label>
+              <input type="text" class="form-control" disabled id="usernameFormControl" name="usernameInput" placeholder="username" [(ngModel)]="userProfile.username">
+            </div>
+            <div class="form-group">
+              <label for="nameFormControl">Name</label>
+              <input type="text" class="form-control" [disabled]="!isCurrentUser" id="nameFormControl" name="nameInput" placeholder="Your name" [(ngModel)]="userProfile.name">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControl">Email address</label>
+              <input type="email" class="form-control" [disabled]="!isCurrentUser" id="exampleFormControl" name="emailInput" placeholder="name@example.com" [(ngModel)]="userProfile.email">
+            </div>
+            <div class="form-group">
+              <label for="phoneFormControl">Phone number</label>
+              <input type="text" class="form-control" [disabled]="!isCurrentUser" id="phoneFormControl" name="phoneInput" placeholder="Phone number" [(ngModel)]="userProfile.phone_number">
+            </div>
+            <div class="form-group">
+                <label for="phoneFormControl">Birthday</label>
+                <div class="row">
+                        <ngb-datepicker #dp [(ngModel)]="birth_date" name="birth_datepicker" [disabled]="!isCurrentUser"></ngb-datepicker>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="biographyFormControl">Description</label>
+                <textarea class="form-control" [disabled]="!isCurrentUser" id="biographyFormControl" name="biographyInput" rows="3" [(ngModel)]="userProfile.biography"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="websiteFormControl">Website</label>
+              <input type="text" class="form-control" [disabled]="!isCurrentUser" id="websiteFormControl" name="websiteInput" placeholder="example.com" [(ngModel)]="userProfile.website">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" [disabled]="!isCurrentUser" value="" id="publicCheck" name="publicCheck" [(ngModel)]="userProfile.public">
+                <label class="form-check-label" for="publicCheck">
+                  Public
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" [disabled]="!isCurrentUser" type="checkbox" value="" id="tagCheck" name="tagCheck" [(ngModel)]="userProfile.taggable">
+                <label class="form-check-label" for="tagCheck">
+                  Allow non-followers to tag you
+                </label>
+              </div>
+              <div class="text-center mt-3 mb-3">
+                <button *ngIf="isCurrentUser" type="submit" class="btn btn-secondary">Update</button>
+                <button *ngIf="isCurrentUser && user.sub.user_role == 'user'" (click)="sendAgentRequest()" class="btn btn-secondary my-3">Send agent request</button>
+
+              </div>
+        </form>
+
+    </div>
+</div>

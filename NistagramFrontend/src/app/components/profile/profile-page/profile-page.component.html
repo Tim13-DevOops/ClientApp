@@ -1,0 +1,25 @@
+
+<div class="col-sm-6 offset-sm-3  col-md-4 offset-md-4 mt-4">
+    <div class="card">
+        <div class="card-block">
+            <h4 class="card-title">{{userProfile.username}}</h4>
+            <!-- <div class="meta">
+                <a href="#">Friends</a>
+            </div> -->
+            <div class="card-text">
+                {{userProfile.biography}}
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-secondary" [routerLink]="['/profileDetails', profileUsername]">Details</button>
+            <span class="float-right">{{userProfile.timestamp | date}}</span>
+            <!-- <span><i class=""></i>75 Friends</span> -->
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <app-post [post]="post" *ngFor="let post of posts"></app-post>
+    </div>
+</div>
